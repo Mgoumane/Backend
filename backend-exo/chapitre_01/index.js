@@ -3,10 +3,11 @@ const express = require('express');
 const app= express();
 const port = 8000;
 
+app.use(express.static('public'));
 
 //Exercice 0
 app.get("/", (request, response) => {
-    response.send(" Authors API ");
+    response.send(" HELLO WORLD ");
 })
 
 
@@ -32,16 +33,32 @@ app.get("/authors/books/:id", (request, response) => {
   response.send(auteursBooks[request.params.id-1])
  })
 
+ 
+ // Exercice 4
+
+ const author= [
+   {name:"Lawrence Nowell, UK",books:"Beowulf"},
+   {name:"William Shakespeare, UK",books:"Hamlet, Othello, Romeo and Juliet, MacBeth"},
+   {name:"Charles Dickens, US",books:"Oliver Twist, A Christmas Carol"},
+   {name:"Oscar Wilde, UK",books:"The Picture of Dorian Gray, The Importance of Being Earnest"},
+ ]
+ app.get("/json/authors/:id/", (request, response) => {
+  response.send(author[request.params.id].books)
+ })
+ 
+ app.get("/json/authors/:id/books", (request, response) => {
+  response.send(author[request.params.id.books])
+ })
+ 
+  
+ 
+ 
  //Exercice 3
  app.get("*", (request, response) => {
   response.send("All routes - Erreur 404")
   console.log(response)
  })
 
- // Exercice 4
-
- 
-  
 
 
 
