@@ -13,7 +13,6 @@ app.get("/form", (req, res) => {
 
 app.use(express.urlencoded({ extended: true }))
 app.post("/form", (req, res) => {
-    console.log(req.body);
     res.redirect('https://www.konexio.eu/index.html')
 });
 
